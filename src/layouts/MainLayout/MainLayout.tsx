@@ -9,7 +9,9 @@ const MainLayout: React.FC<Props> = ({ children }) => {
   return (
     <div>
       <Header />
-      {children}
+        <div className="container">
+            {children}
+        </div>
       <Footer />
     </div>
   );
