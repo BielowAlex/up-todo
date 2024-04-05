@@ -1,4 +1,4 @@
-describe("LoginButton Component", () => {
+describe("AuthSection Component", () => {
     it("test", () => {
         expect(true).toBe(true)
     })

@@ -1,19 +1,15 @@
-import React from 'react';
-import style from './style.module.scss'
-import {Logo} from "../Logo";
-import {LoginButton} from "../UI";
+import React from "react";
+import style from "./style.module.scss";
+import { Logo } from "../Logo";
+import { AuthSection } from "../AuthSection";
 
 const Header: React.FC = () => {
-    const handleLogin = () => {
-
-    }
-
-    return (
-        <header className={style.container}>
-            <Logo/>
-            <LoginButton handleClick={handleLogin}/>
-        </header>
-    );
+  return (
+    <header className={style.container}>
+      <Logo />
+      <AuthSection />
+    </header>
+  );
 };
 
-export {Header};
+export { Header };
