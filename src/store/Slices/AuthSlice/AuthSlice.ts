@@ -4,8 +4,10 @@ export type AuthSliceSchema = {
   isLogin: boolean;
 };
 
+const getToken = localStorage.getItem("token");
+
 const initialState: AuthSliceSchema = {
-  isLogin: false,
+  isLogin: !!getToken,
 };
 
 const authSlice = createSlice({
@@ -18,8 +20,13 @@ const authSlice = createSlice({
   },
 });
 
-const { reducer: authReducer } = authSlice;
+const {
+  reducer: authReducer,
+  actions: { setAuthStatus },
+} = authSlice;
 
-const authActions = {};
+const authActions = {
+  setAuthStatus,
+};
 
 export { authActions, authReducer };

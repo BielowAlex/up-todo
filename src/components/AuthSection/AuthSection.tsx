@@ -1,13 +1,21 @@
 import React from "react";
 import style from "./style.module.scss";
 import { Button } from "../UI";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { authActions } from "../../store";
 
 const AuthSection: React.FC = () => {
-  const [isLogin, setIsLogin] = React.useState<boolean>(false);
+  const isLogin: boolean = useAppSelector((state) => state.authReducer.isLogin);
+  const dispatch = useAppDispatch();
 
   const handleLogin = () => {
     // window.alert(isLogin ? "logged out" : "logged in");
-    setIsLogin((prev) => !prev);
+    if (isLogin) {
+      localStorage.removeItem("token");
+    } else {
+      localStorage.setItem("token", "true");
+    }
+    dispatch(authActions.setAuthStatus(!isLogin));
   };
 
   if (isLogin) {
