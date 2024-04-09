@@ -3,16 +3,20 @@ import style from "./style.module.scss";
 import { Button } from "../UI";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { authActions } from "../../store";
+import { useNavigate } from "react-router-dom";
 
 const AuthSection: React.FC = () => {
   const isLogin: boolean = useAppSelector((state) => state.authReducer.isLogin);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     // window.alert(isLogin ? "logged out" : "logged in");
     if (isLogin) {
       localStorage.removeItem("token");
+      navigate("/auth");
     } else {
+      navigate("/");
       localStorage.setItem("token", "true");
     }
     dispatch(authActions.setAuthStatus(!isLogin));

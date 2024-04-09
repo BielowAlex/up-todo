@@ -1,0 +1,21 @@
+@import "../../../../styles/variables/colors";
+@import "../../../../styles/variables/mixins";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  label{
+    @include adaptive-font(16,14);
+    width: 100%;
+  }
+
+  input{
+    padding: 5px 10px;
+    width: 100%;
+    @include adaptive-font(16,14);
+  }
+}

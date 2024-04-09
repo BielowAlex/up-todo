@@ -1,17 +1,14 @@
 import React from "react";
 import { Footer, Header } from "../../components";
+import { Outlet } from "react-router-dom";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-const MainLayout: React.FC<Props> = ({ children }) => {
+const MainLayout: React.FC = () => {
   return (
     <div>
       <Header />
-        <div className="container">
-            {children}
-        </div>
+      <div className="container">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
