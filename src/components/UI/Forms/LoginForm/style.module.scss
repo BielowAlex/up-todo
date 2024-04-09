@@ -6,17 +6,4 @@
   flex-direction: column;
   gap: 20px;
 }
-.message{
-  color: $primary-text-color;
-  @include adaptive-font(12,10);
-  a{
-    transition: all 0.3s linear;
-    color: $primary-text-color;
-    text-decoration: underline;
-    &:hover{
-      font-weight: 700;
-      text-decoration: none;
-    }
-  }
 
-}

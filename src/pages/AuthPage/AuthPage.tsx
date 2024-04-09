@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/UI";
+import { SignUpMessage } from "../../components";
 
 const AuthPage: React.FC = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ const AuthPage: React.FC = () => {
   return (
     <div className={style.container}>
       <h2 className={style.title}>Choose sign-in method </h2>
+      <SignUpMessage />
+
       <nav className={style.navigation}>
         <Button>
           <FontAwesomeIcon icon={faGoogle} />

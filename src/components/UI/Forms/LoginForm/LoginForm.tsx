@@ -5,9 +5,10 @@ import { FormikHelpers } from "formik/dist/types";
 import { FormInput } from "../../Inputs";
 import style from "./style.module.scss";
 import { Button } from "../../Buttons";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import { authActions } from "../../../../store";
+import { SignUpMessage } from "../../../SignUpMessage";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -69,10 +70,7 @@ const LoginForm: React.FC = () => {
           {loginError && <div className={style.error}>{loginError}</div>}
           <FormInput type="email" name="email" label="Email" />
           <FormInput type="password" name="password" label="Password" />
-          <p className={style.message}>
-            If you don't have an account, please{" "}
-            <Link to="/auth/email/sign-up">sign-up</Link>.
-          </p>
+          <SignUpMessage />
           <Button disabled={isSubmitting} type="submit">
             Sign-in
           </Button>
