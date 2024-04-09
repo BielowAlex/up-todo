@@ -13,7 +13,7 @@ const FormInput: React.FC<Props> = ({ label, type = "text" }) => {
   return (
     <div className={style.container}>
       <label htmlFor={label}>{label}</label>
-      <Field id={id} name={id} type={type} />
+      <Field id={id} name={id} type={type} autoComplete="off" />
       <ErrorMessage name={id} component="div" />
     </div>
   );

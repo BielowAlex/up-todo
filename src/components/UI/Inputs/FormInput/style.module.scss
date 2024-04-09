@@ -9,13 +9,24 @@
   gap: 10px;
 
   label{
+    position: relative;
+    background: $back;
     @include adaptive-font(16,14);
     width: 100%;
   }
 
   input{
-    padding: 5px 10px;
+    padding: 10px 15px;
     width: 100%;
     @include adaptive-font(16,14);
+    background: $back;
+    color: $primary-text-color;
+    border:1px solid $primary-text-color ;
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px white inset !important;
+    }
   }
 }
