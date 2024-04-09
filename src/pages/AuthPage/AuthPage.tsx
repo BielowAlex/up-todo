@@ -3,16 +3,13 @@ import style from "./style.module.scss";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../../components/UI";
+import { Button, LinkButton } from "../../components/UI";
 import { SignUpMessage } from "../../components";
 
 const AuthPage: React.FC = () => {
-  const navigate = useNavigate();
-
-  const handleEmailAuthButton = () => {
-    navigate("email");
-  };
+  // const handleGmailAuthButton = () => {
+  //   navigate("email");
+  // };
 
   return (
     <div className={style.container}>
@@ -24,10 +21,10 @@ const AuthPage: React.FC = () => {
           <FontAwesomeIcon icon={faGoogle} />
           <span>Sign-in</span>
         </Button>
-        <Button handleClick={handleEmailAuthButton}>
+        <LinkButton to={"email"}>
           <FontAwesomeIcon icon={faEnvelope} />
           <span>Sign-in</span>
-        </Button>
+        </LinkButton>
       </nav>
     </div>
   );
