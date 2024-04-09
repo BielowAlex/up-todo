@@ -15,7 +15,7 @@ const FormInput: React.FC<Props> = ({ name, label, type = "text" }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    helpers.setValue(value.replace(/\s/g, "")).then(); // Видаляємо всі пробіли
+    helpers.setValue(value.replace(/\s/g, ""));
   };
 
   return (
