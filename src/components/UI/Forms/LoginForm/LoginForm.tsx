@@ -5,7 +5,9 @@ import { FormikHelpers } from "formik/dist/types";
 import { FormInput } from "../../Inputs";
 import style from "./style.module.scss";
 import { Button } from "../../Buttons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
+import { authActions } from "../../../../store";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -26,14 +28,36 @@ type LoginDate = {
 
 const LoginForm: React.FC = () => {
   const initialValues: LoginDate = { email: "", password: "" };
+  const isLogin: boolean = useAppSelector((state) => state.authReducer.isLogin);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [loginError, setLoginError] = React.useState<string>("");
 
-  const handleSubmit = (
-    values: LoginDate,
-    actions: FormikHelpers<LoginDate>,
-  ) => {
-    console.log(values);
-    actions.setSubmitting(false);
-  };
+  const handleSubmit = React.useCallback(
+    async (values: LoginDate, actions: FormikHelpers<LoginDate>) => {
+      try {
+        if (
+          values.email !== "test@gmail.com" ||
+          values.password !== "adminadmin"
+        ) {
+          setLoginError("Invalid email or password");
+          actions.setSubmitting(false);
+          return;
+        }
+
+        localStorage.setItem("token", "true");
+        dispatch(authActions.setAuthStatus(!isLogin));
+        setLoginError("");
+
+        navigate("/");
+      } catch (error) {
+        setLoginError("An error occurred. Please try again later.");
+      } finally {
+        actions.setSubmitting(false);
+      }
+    },
+    [dispatch, isLogin, navigate],
+  );
   return (
     <Formik
       initialValues={initialValues}
@@ -42,13 +66,16 @@ const LoginForm: React.FC = () => {
     >
       {({ isSubmitting }) => (
         <Form className={style.container}>
-          <FormInput type="email" label="Email" />
-          <FormInput type="password" label="Password" />
+          {loginError && <div className={style.error}>{loginError}</div>}
+          <FormInput type="email" name="email" label="Email" />
+          <FormInput type="password" name="password" label="Password" />
           <p className={style.message}>
             If you don't have an account, please{" "}
             <Link to="/auth/email/sign-up">sign-up</Link>.
           </p>
-          <Button disabled={isSubmitting}>Sign-in</Button>
+          <Button disabled={isSubmitting} type="submit">
+            Sign-in
+          </Button>
         </Form>
       )}
     </Formik>

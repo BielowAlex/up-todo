@@ -1,20 +1,30 @@
 import React from "react";
-import { ErrorMessage, Field } from "formik";
+import { useField } from "formik";
 import { v4 } from "uuid";
 import style from "./style.module.scss";
 
 type Props = {
-  label: string;
+  name: string; // Змінено з label на name для кращого визначення поля
   type?: string;
+  label: string;
 };
 
-const FormInput: React.FC<Props> = ({ label, type = "text" }) => {
+const FormInput: React.FC<Props> = ({ name, label, type = "text" }) => {
   const id = v4();
+  const [field, meta, helpers] = useField(name);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    helpers.setValue(value.replace(/\s/g, "")).then(); // Видаляємо всі пробіли
+  };
+
   return (
     <div className={style.container}>
-      <label htmlFor={label}>{label}</label>
-      <Field id={id} name={id} type={type} autoComplete="off" />
-      <ErrorMessage name={id} component="div" />
+      <label htmlFor={id}>{label}</label>
+      <input id={id} {...field} type={type} onChange={handleChange} />
+      {meta.touched && meta.error ? (
+        <div className={style.error}>{meta.error}</div>
+      ) : null}
     </div>
   );
 };
