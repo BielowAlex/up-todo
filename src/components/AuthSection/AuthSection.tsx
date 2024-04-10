@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./style.module.scss";
-import { Button } from "../UI";
+import { Button, TextButton } from "../UI";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { authActions, userActions } from "../../store";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +36,8 @@ const AuthSection: React.FC = () => {
             height={45}
           />
         </div>
-        <Button handleClick={handleLogin}>Logout</Button>
+        <p>{user.username}</p>
+        <TextButton handleClick={handleLogin}>Logout</TextButton>
       </div>
     );
   }
