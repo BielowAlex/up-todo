@@ -24,20 +24,22 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state: UserSliceSchema, action: PayloadAction<User>) => {
       state.user = action.payload;
+      console.log(action.payload);
+      console.log(state.user);
     },
-    clearDate: (state: UserSliceSchema) => {
+    clearData: (state: UserSliceSchema) => {
       state.user = clearUser;
     },
   },
 });
 const {
   reducer: userReducer,
-  actions: { setUser, clearDate },
+  actions: { setUser, clearData },
 } = userSlice;
 
 const userActions = {
   setUser,
-  clearDate,
+  clearData,
 };
 
 export { userActions, userReducer };
