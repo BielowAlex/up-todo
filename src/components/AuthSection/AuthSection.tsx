@@ -2,7 +2,7 @@ import React from "react";
 import style from "./style.module.scss";
 import { Button } from "../UI";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { authActions } from "../../store";
+import { authActions, userActions } from "../../store";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../types";
 import { noAvatarUrl } from "../../constant/user.constant.ts";
@@ -14,13 +14,13 @@ const AuthSection: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // window.alert(isLogin ? "logged out" : "logged in");
     if (isLogin) {
       localStorage.removeItem("token");
       navigate("/auth");
+      dispatch(authActions.logout());
+      dispatch(userActions.clearData());
     } else {
-      navigate("/");
-      localStorage.setItem("token", "true");
+      navigate("/auth");
     }
     dispatch(authActions.setAuthStatus(!isLogin));
   };
