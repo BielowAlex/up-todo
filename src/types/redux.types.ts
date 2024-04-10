@@ -1,4 +1,6 @@
-import { rootReducer, setupStore } from "../store";
+import { rootReducer, store } from "../store";
+
+const setupStore = () => store;
 
 type RootState = ReturnType<typeof rootReducer>;
 type AppStore = ReturnType<typeof setupStore>;
