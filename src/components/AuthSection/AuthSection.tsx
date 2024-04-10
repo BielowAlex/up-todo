@@ -4,9 +4,12 @@ import { Button } from "../UI";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { authActions } from "../../store";
 import { useNavigate } from "react-router-dom";
+import { User } from "../../types";
+import { noAvatarUrl } from "../../constant/user.constant.ts";
 
 const AuthSection: React.FC = () => {
   const isLogin: boolean = useAppSelector((state) => state.authReducer.isLogin);
+  const user: User = useAppSelector((state) => state.userReducer.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -27,7 +30,7 @@ const AuthSection: React.FC = () => {
       <div className={style.container}>
         <div className={style.avatar}>
           <img
-            src="https://lh6.googleusercontent.com/proxy/Y6SwCoxLrC_a3oceaR4g5gEh0fB3I1-FQz1NQiom9CDh39Dgo_ItnUKiK6Vahe8eZrY3dteV6ve44SOK1UpZDTZfk6ayM5qN4g5OCThC"
+            src={user.avatar || noAvatarUrl}
             alt="asds"
             width={45}
             height={45}

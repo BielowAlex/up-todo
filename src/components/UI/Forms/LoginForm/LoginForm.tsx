@@ -7,8 +7,9 @@ import style from "./style.module.scss";
 import { Button } from "../../Buttons";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
-import { authActions } from "../../../../store";
+import { authActions, userActions } from "../../../../store";
 import { SignUpMessage } from "../../../SignUpMessage";
+import { hardcodeUser } from "../../../../constant/user.constant.ts";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -48,6 +49,7 @@ const LoginForm: React.FC = () => {
 
         localStorage.setItem("token", "true");
         dispatch(authActions.setAuthStatus(!isLogin));
+        dispatch(userActions.setUser(hardcodeUser));
         setLoginError("");
 
         navigate("/");

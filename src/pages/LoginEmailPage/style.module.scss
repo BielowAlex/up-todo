@@ -1,7 +1,15 @@
+@import "../../styles/variables/mixins";
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-
+  flex-direction: column;
+  gap: 20px;
+  h2{
+    font-weight: bolder;
+    text-decoration: underline;
+    @include adaptive-font(24,20);
+    cursor: default;
+  }
 }
