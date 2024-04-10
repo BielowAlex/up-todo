@@ -2,7 +2,12 @@ import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { MainLayout } from "../layouts";
 import { RequireAuth } from "../utils";
-import { AuthPageAsync, HomePageAsync, LoginEmailPageAsync } from "../pages";
+import {
+  AuthPageAsync,
+  HomePageAsync,
+  LoginEmailPageAsync,
+  RegisterEmailPageAsync,
+} from "../pages";
 
 const App: React.FC = () => {
   return (
@@ -10,7 +15,10 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/auth">
           <Route index element={<AuthPageAsync />} />
-          <Route path="email" element={<LoginEmailPageAsync />} />
+          <Route path="email">
+            <Route index element={<LoginEmailPageAsync />} />
+            <Route path="sign-up" element={<RegisterEmailPageAsync />} />
+          </Route>
         </Route>
         <Route element={<RequireAuth />}>
           <Route element={<MainLayout />}>

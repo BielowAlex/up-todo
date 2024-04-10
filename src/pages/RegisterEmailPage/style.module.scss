@@ -1,0 +1,16 @@
+@import "../../styles/variables/mixins";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  h2{
+    font-weight: bolder;
+    text-decoration: underline;
+    @include adaptive-font(24,20);
+    cursor: default;
+  }
+}
