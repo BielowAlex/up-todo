@@ -23,7 +23,7 @@ const FormInput: React.FC<Props> = ({ name, label, type = "text" }) => {
       <label htmlFor={id}>{label}</label>
       <input id={id} {...field} type={type} onChange={handleChange} />
       {meta.touched && meta.error ? (
-        <div className={style.error}>{meta.error}</div>
+        <span className={style.error}>{meta.error}</span>
       ) : null}
     </div>
   );
