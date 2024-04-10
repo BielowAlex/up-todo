@@ -30,7 +30,7 @@ experiences, UpTodo offers a seamless way to organize your day.
 To get a local copy up and running follow these simple steps:
 1. Clone the repo: 
 ```bash
-git clone https://github.com/your-username/uptodo.git
+git clone https://github.com/BielowAlex/up-todo.git
 ```
 2. Install NPM package
 ```bash
