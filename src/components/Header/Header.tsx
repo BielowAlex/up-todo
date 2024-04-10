@@ -1,12 +1,15 @@
-import React from 'react';
-import style from './style.module.scss'
+import React from "react";
+import style from "./style.module.scss";
+import { Logo } from "../Logo";
+import { AuthSection } from "../AuthSection";
 
 const Header: React.FC = () => {
-    return (
-        <header className={style.container}>
-            <h2>Im a header</h2>
-        </header>
-    );
+  return (
+    <header className={style.container}>
+      <Logo />
+      <AuthSection />
+    </header>
+  );
 };
 
-export {Header};
+export { Header };

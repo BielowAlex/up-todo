@@ -1,0 +1,19 @@
+@import "../../../../styles/variables/colors";
+@import "../../../../styles/variables/mixins";
+
+.btn {
+  background: inherit;
+  box-shadow: none;
+  border:none;
+  color:$primary-text-color ;
+  cursor: pointer;
+  text-decoration: underline;
+  line-height: 1.4;
+  transition: .4s linear all;
+  @include adaptive-font(16,14);
+
+  &:hover{
+    font-weight: bolder;
+    text-decoration: none;
+  }
+}

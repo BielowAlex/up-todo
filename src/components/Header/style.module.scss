@@ -1,2 +1,15 @@
+@import "../../styles/variables/colors";
 .container {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  max-height: 100px;
+  padding: 10px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.37);
+  background: $back;
+  width: 100%;
 }

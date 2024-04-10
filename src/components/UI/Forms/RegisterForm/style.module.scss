@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  h2{
+    font-weight: bold;
+    //@include adaptive-font()
+  }
+}
