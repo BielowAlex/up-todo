@@ -34,8 +34,8 @@ const WeekCalendar: React.FC = () => {
   const weekDates: WeekDate[] = generateWeekDates(weekStart);
 
   React.useEffect(() => {
-    dispatch(dateAction.setSelectedDate(formatDateToYYYYMMDD(today)));
-  }, []);
+    dispatch(dateAction.setSelectedDate(formatDateToYYYYMMDD(new Date())));
+  }, [dispatch]);
 
   return (
     <div className={style.container}>
