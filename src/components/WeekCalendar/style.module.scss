@@ -1,0 +1,49 @@
+@import "../../styles/variables/mixins";
+@import "../../styles/variables/colors";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: inherit; /* Adjust the color to match your theme */
+  color: $primary-text-color;
+  width: 100%;
+}
+
+.day{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  box-sizing: border-box;
+  background: inherit;
+  border: none;
+
+}
+
+.today{
+  border: 1px solid white !important;
+  border-radius: 50%;
+}
+
+.weekday{
+  @include adaptive-font(14,12);
+  font-weight: lighter;
+  text-align: center;
+  color: $primary-text-color;
+}
+
+.date{
+  color: $primary-text-color;
+  font-weight: bold;
+  padding: 5px;
+  background: inherit;
+  border: 1px solid rgba(255, 255, 255, 0);
+  cursor: pointer;
+  @include adaptive-font(18,16)
+}
+
+.past{
+  opacity: .5;
+}

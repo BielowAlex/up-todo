@@ -1,10 +1,11 @@
 import React from "react";
 import style from "./style.module.scss";
+import { DateSection } from "../../components";
 
 const HomePage: React.FC = () => {
   return (
     <div className={style.container}>
-      <h1>Home page</h1>
+      <DateSection />
     </div>
   );
 };
