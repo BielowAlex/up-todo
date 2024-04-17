@@ -4,4 +4,5 @@ export * from "./AuthSection";
 export * from "./Footer";
 export * from "./UI";
 export * from "./DateSection";
+export * from "./TaskSection";
 export * from "./Logo";

@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { authReducer, dateReducer, userReducer } from "./Slices";
+import { authReducer, dateReducer, taskReducer, userReducer } from "./Slices";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import {
@@ -15,6 +15,7 @@ export const rootReducer = combineReducers({
   authReducer,
   userReducer,
   dateReducer,
+  taskReducer,
 });
 
 const persistConfig = {

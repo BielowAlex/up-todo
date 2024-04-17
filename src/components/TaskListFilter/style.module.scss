@@ -1,0 +1,16 @@
+.head{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 50px;
+  &Content{
+    transition: all linear .4s;
+    font-weight: bold;
+    text-decoration: none;
+    opacity: .4;
+    &Active{
+      opacity: 1;
+      text-decoration: underline;
+    }
+  }
+}
