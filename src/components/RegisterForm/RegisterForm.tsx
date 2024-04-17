@@ -1,10 +1,9 @@
 import React from "react";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
-import { Button } from "../../Buttons";
-import { FormInput } from "../../Inputs";
 import style from "./style.module.scss";
 import { FormikHelpers } from "formik/dist/types";
+import { Button, FormInput } from "../UI";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const passRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()]).{8,}$/;

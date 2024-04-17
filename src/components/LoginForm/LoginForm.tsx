@@ -2,14 +2,13 @@ import React from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { FormikHelpers } from "formik/dist/types";
-import { FormInput } from "../../Inputs";
 import style from "./style.module.scss";
-import { Button } from "../../Buttons";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../../hooks";
-import { authActions, userActions } from "../../../../store";
-import { SignUpMessage } from "../../../SignUpMessage";
-import { hardcodeUser } from "../../../../constant/user.constant.ts";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { authActions, userActions } from "../../store";
+import { SignUpMessage } from "../SignUpMessage";
+import { hardcodeUser } from "../../constant/user.constant.ts";
+import { Button, FormInput } from "../UI";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
