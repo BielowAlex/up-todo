@@ -5,6 +5,7 @@ import cn from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBoxArchive,
+  faCalendarPlus,
   faCheckDouble,
   faListCheck,
 } from "@fortawesome/free-solid-svg-icons";
@@ -61,6 +62,12 @@ const TaskListFilter: React.FC = () => {
         handleClick={handleGetArchiveTasks}
       >
         Archived <FontAwesomeIcon icon={faBoxArchive} />
+      </TextButton>
+      <TextButton
+        className={cn(style.headContent, style.headContentActive)}
+        disabled={tasksType !== "tasks"}
+      >
+        Add <FontAwesomeIcon icon={faCalendarPlus} />
       </TextButton>
     </div>
   );
