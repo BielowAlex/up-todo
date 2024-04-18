@@ -1,0 +1,33 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.btn{
+  border: none;
+  background: inherit;
+  color: white;
+  font-size: 38px;
+  cursor: pointer;
+}
+
+.nav{
+  position: absolute;
+  top: 0;
+  right: 100%;
+  z-index: 9999999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5px;
+  gap: 10px;
+  background: #1e1e1e;
+  border: 1px solid white;
+  button{
+    color: white;
+  }
+}
