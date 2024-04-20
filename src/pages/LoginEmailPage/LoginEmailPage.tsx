@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./style.module.scss";
-import { LoginForm } from "../../components";
+import { LoginForm } from "../../components/LoginForm";
 
 const LoginEmailPage: React.FC = () => {
   return (

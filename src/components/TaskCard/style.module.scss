@@ -1,0 +1,76 @@
+@import "../../styles/variables/colors";
+@import "../../styles/variables/mixins";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 100%;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  background: $primary-text-color;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: $primary-text-color;
+  padding: 20px;
+}
+
+.desc {
+  color: $back;
+  @include adaptive-font(18,14);
+}
+
+.btn {
+  color: $back;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.task {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.title {
+  display: flex;
+  background: $primary-text-color;
+  z-index: 5;
+  overflow: hidden;
+
+  h3 {
+    @include adaptive-font(24, 20);
+    margin: 0;
+    font-weight: bold;
+    color: $back;
+    cursor: default;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  button {
+    @include adaptive-font(20, 18);
+
+    color: $back;
+  }
+}
+
+
+
+
+

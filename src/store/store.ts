@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { authReducer, userReducer } from "./Slices";
+import { authReducer, dateReducer, taskReducer, userReducer } from "./Slices";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import {
@@ -10,10 +10,15 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist/es/constants";
+import { baseApi, reauthApi } from "../core/interceptor.ts";
 
 export const rootReducer = combineReducers({
   authReducer,
   userReducer,
+  dateReducer,
+  taskReducer,
+  [reauthApi.reducerPath]: reauthApi.reducer,
+  [baseApi.reducerPath]: baseApi.reducer,
 });
 
 const persistConfig = {
@@ -30,7 +35,9 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    })
+      .concat(reauthApi.middleware)
+      .concat(baseApi.middleware),
 });
 
 export const persistor = persistStore(store);

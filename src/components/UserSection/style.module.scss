@@ -1,0 +1,41 @@
+@import "../../styles/variables/colors";
+@import "../../styles/variables/mixins";
+
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+
+}
+
+.greeting{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
+
+  &Title{
+    @include adaptive-font(28,18);
+    color: $primary-text-color;
+  }
+  &Username{
+    font-weight: bold;
+    @include adaptive-font(28,18);
+    color: $primary-text-color;
+  }
+}
+
+.avatar{
+  position: relative;
+  display: flex;
+  width: 100px;
+  img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    padding: 5px;
+    border: 1px solid $primary-text-color;
+  }
+}

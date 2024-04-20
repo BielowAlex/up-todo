@@ -1,10 +1,13 @@
 import React from "react";
 import style from "./style.module.scss";
+import { DateSection, TaskSection, UserSection } from "../../components";
 
 const HomePage: React.FC = () => {
   return (
     <div className={style.container}>
-      <h1>Home page</h1>
+      <UserSection />
+      <DateSection />
+      <TaskSection />
     </div>
   );
 };

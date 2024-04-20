@@ -1,0 +1,17 @@
+@import "../../styles/variables/mixins";
+@import "../../styles/variables/colors";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
+  padding: 20px;
+}
+
+.title{
+  font-weight: bold;
+  @include adaptive-font(24,14)
+}

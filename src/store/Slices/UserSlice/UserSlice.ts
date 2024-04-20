@@ -8,10 +8,14 @@ export type UserSliceSchema = {
 const clearUser: User = {
   email: "",
   firstName: "",
-  id: "",
+  _id: "",
   avatar: "",
   lastName: "",
   username: "",
+  password: "",
+  __v: 0,
+  createdAt: "",
+  updatedAt: "",
 };
 
 const initialState: UserSliceSchema = {

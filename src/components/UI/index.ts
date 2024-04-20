@@ -1,3 +1,3 @@
 export * from "./Buttons";
-export * from "./Forms";
 export * from "./Inputs";
+export * from "./CustomComponents";

@@ -1,59 +1,42 @@
-# React Vite Template with React Router, Vitest, and Jest
-
-This project is a ready-to-use template created with Vite that incorporates React Router for routing, Vitest for unit testing, and Jest for testing. It's designed to offer developers a quick start for building React applications with the best development tools integrated.
+![img.png](https://cdn4.iconfinder.com/data/icons/doodle-3/175/file-list-512.png)
+# UpTodo
+UpTodo is a sleek, intuitive to-do list web application designed to help you manage your daily tasks with ease and
+efficiency. Built with the modern React framework and leveraging the power of Vite for blazing-fast development
+experiences, UpTodo offers a seamless way to organize your day.
 
 ## Features
 
-- **React 17/18**: Utilizes the latest React library for building user interfaces.
-- **Vite**: A fast, modern build tool that significantly improves the development experience.
-- **React Router**: Integrated for handling routing in React applications, allowing for multiple page views and navigation.
-- **Vitest**: A Vite-native unit testing framework that's fast and efficient, configured for testing React components.
-- **Jest**: Configured as an alternative to Vitest for developers who prefer Jest for testing their applications.
+* Task Management: Easily add, edit, and delete tasks to keep your to-do list up-to-date.
+* Categorization: Organize tasks into customizable categories for better task management.
+* Prioritization: Mark tasks with priority levels to focus on what matters most.
+* Responsive Design: Use UpTodo on any device with its fully responsive layout.
+* Persistence: With Redux-Persist, your tasks stay saved across sessions for consistent productivity.
+
+## Technology Stack:
+
+* React: A JavaScript library for building user interfaces.
+* Vite: A modern frontend build tool that significantly improves the development experience.
+* Redux Toolkit & React Redux: State management libraries designed to write logic easily and efficiently.
+* React Router DOM: For navigation within the application.
+* Formik: For handling form submissions with ease.
+* Yup: For schema-based form validation.
+* Sass: For writing more maintainable CSS with an extension language.
+* FontAwesome: For adding icons to improve UI/UX.
+* Vitest: A Vite-native unit testing framework.
+* TypeScript: Adds static type definitions to ensure the reliability of the codebase.
+* ESLint & Prettier: For ensuring code quality and consistency.
 
 ## Getting Started
-
-To get started with this template, follow the steps below:
-
-### Prerequisites
-
-Ensure you have Node.js installed on your system (preferably the latest LTS version).
-
-### Installation
-
-1. Clone the repository:
-
-
+To get a local copy up and running follow these simple steps:
+1. Clone the repo: 
 ```bash
-  git clone https://yourrepositoryurl.git
+git clone https://github.com/BielowAlex/up-todo.git
 ```
-
-2.**Navigate to the project directory:**
-
+2. Install NPM package
 ```bash
-cd your-project-name
+npm i
 ```
-Install dependencies:
-```bash
-npm install
-```
-
-Run the development server:
+3. Install NPM package
 ```bash
 npm run dev
 ```
-
-Your application should now be running on http://localhost:3000.
-
-Running Tests
-To run unit tests with Vitest, use:
-```bash
-npm run test
-```
-Building for Production
-To build the application for production, run:
-
-```bash
-npm run build
-```
-This will generate a dist folder in the root of your project, which you can serve using any static file server.
-
