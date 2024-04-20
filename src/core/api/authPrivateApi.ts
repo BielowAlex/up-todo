@@ -1,24 +1,27 @@
 import { baseApi } from "../interceptor.ts";
-import { ApiError, User } from "../../types";
+import { LoginDate, RegisterDate, User } from "../../types";
 
-interface SignInCredentials {
-  email: string;
-  password: string;
-}
+// const providesError = (error: ApiError) => [
+//   { type: "ApiError", id: error.status },
+// ];
 
 export const authPrivateApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    signIn: builder.mutation<User, SignInCredentials>({
+    signIn: builder.mutation<User, LoginDate>({
       query: (body) => ({
         url: "/auth/sign-in",
         method: "POST",
         body,
       }),
-      providesError: (error: ApiError) => [
-        { type: "ApiError", id: error.status },
-      ],
+    }),
+    signUp: builder.mutation<User, RegisterDate>({
+      query: (body) => ({
+        url: "/auth/sign-up",
+        method: "POST",
+        body,
+      }),
     }),
   }),
 });
 
-export const { useSignInMutation } = authPrivateApi;
+export const { useSignInMutation, useSignUpMutation } = authPrivateApi;

@@ -3,18 +3,16 @@ import { Form, Formik } from "formik";
 import style from "./style.module.scss";
 import { FormikHelpers } from "formik/dist/types";
 import { Button, FormInput } from "../UI";
-import { registerSchema } from "../../utils";
-
-type RegisterDate = {
-  email: string;
-  password: string;
-  passwordRepeat: string;
-  username: string;
-  firstName: string;
-  lastName: string;
-};
+import { registerSchema, transformErrorData } from "../../utils";
+import { ApiError, ApiErrorDetails, RegisterDate, User } from "../../types";
+import { useSignUpMutation } from "../../core";
+import { authActions, userActions } from "../../store";
+import { useAppDispatch } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm: React.FC = () => {
+  //state
+  const [loginError, setLoginError] = React.useState<string>("");
   const initialValue: RegisterDate = {
     email: "",
     firstName: "",
@@ -23,19 +21,33 @@ const RegisterForm: React.FC = () => {
     password: "",
     passwordRepeat: "",
   };
-  const [loginError, setLoginError] = React.useState<string>("");
 
+  //tools
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  //api
+  const [signUp, { isLoading }] = useSignUpMutation();
+
+  //logic
   const handleSubmit = React.useCallback(
     async (values: RegisterDate, actions: FormikHelpers<RegisterDate>) => {
       try {
-        console.log(values);
-      } catch (error) {
-        setLoginError("An error occurred. Please try again later.");
+        const data: User = await signUp(values).unwrap();
+        console.log(data);
+        dispatch(authActions.setAuthStatus(true));
+        dispatch(userActions.setUser(data));
+
+        setLoginError("");
+        navigate("/");
+      } catch (error: ApiError | any) {
+        const errorDetails: ApiErrorDetails = transformErrorData(error);
+        setLoginError(errorDetails.message);
       } finally {
         actions.setSubmitting(false);
       }
     },
-    [],
+    [dispatch, navigate, signUp],
   );
   return (
     <Formik
@@ -57,7 +69,7 @@ const RegisterForm: React.FC = () => {
             label="Repeat password"
           />
           <Button disabled={isSubmitting} type="submit">
-            Sign-up
+            {isLoading ? "Loading..." : "Sign - up"}
           </Button>
         </Form>
       )}

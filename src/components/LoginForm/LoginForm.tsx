@@ -3,24 +3,18 @@ import { Form, Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";
 import style from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch } from "../../hooks";
 import { SignUpMessage } from "../SignUpMessage";
 import { Button, FormInput } from "../UI";
 import { useSignInMutation } from "../../core";
 import { loginSchema, transformErrorData } from "../../utils";
-import { ApiError, ApiErrorDetails, User } from "../../types";
+import { ApiError, ApiErrorDetails, LoginDate, User } from "../../types";
 import { authActions, userActions } from "../../store";
-
-type LoginDate = {
-  email: string;
-  password: string;
-};
 
 const LoginForm: React.FC = () => {
   //state
   const [loginError, setLoginError] = React.useState<string>("");
   const initialValues: LoginDate = { email: "", password: "" };
-  const isLogin: boolean = useAppSelector((state) => state.authReducer.isLogin);
 
   //tools
   const dispatch = useAppDispatch();
@@ -35,7 +29,7 @@ const LoginForm: React.FC = () => {
       try {
         const data: User = await signIn(values).unwrap();
 
-        dispatch(authActions.setAuthStatus(!isLogin));
+        dispatch(authActions.setAuthStatus(true));
         dispatch(userActions.setUser(data));
 
         setLoginError("");
@@ -47,7 +41,7 @@ const LoginForm: React.FC = () => {
         actions.setSubmitting(false);
       }
     },
-    [dispatch, isLogin, navigate, signIn],
+    [dispatch, navigate, signIn],
   );
   return (
     <Formik
