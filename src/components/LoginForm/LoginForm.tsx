@@ -1,28 +1,15 @@
 import React from "react";
 import { Form, Formik } from "formik";
-import * as Yup from "yup";
 import { FormikHelpers } from "formik/dist/types";
 import style from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { SignUpMessage } from "../SignUpMessage";
 import { Button, FormInput } from "../UI";
-import { useSignInMutation } from "../../core/api";
-import { transformErrorData } from "../../utils";
+import { useSignInMutation } from "../../core";
+import { loginSchema, transformErrorData } from "../../utils";
 import { ApiError, ApiErrorDetails, User } from "../../types";
 import { authActions, userActions } from "../../store";
-
-const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-const loginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Invalid email format")
-    .matches(emailRegex, "Invalid email format")
-    .required("Field is required"),
-  password: Yup.string()
-    .min(8, "Password min length 8 letters")
-    .required("Field is required"),
-});
 
 type LoginDate = {
   email: string;
@@ -30,14 +17,19 @@ type LoginDate = {
 };
 
 const LoginForm: React.FC = () => {
+  //state
+  const [loginError, setLoginError] = React.useState<string>("");
   const initialValues: LoginDate = { email: "", password: "" };
   const isLogin: boolean = useAppSelector((state) => state.authReducer.isLogin);
+
+  //tools
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [loginError, setLoginError] = React.useState<string>("");
 
+  //api
   const [signIn, { isLoading }] = useSignInMutation();
 
+  //methods
   const handleSubmit = React.useCallback(
     async (values: LoginDate, actions: FormikHelpers<LoginDate>) => {
       try {
