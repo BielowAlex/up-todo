@@ -15,7 +15,15 @@ const UserSection: React.FC = () => {
         </span>
       </div>
       <div className={style.avatar}>
-        <img src={avatar} alt="avatar" />
+        <img
+          width={100}
+          height={100}
+          src={
+            avatar ||
+            "https://a0.anyrgb.com/pngimg/1236/14/no-facial-features-no-avatar-no-eyes-expressionless-avatar-icon-delayering-avatar-user-avatar-men-head-portrait-thumbnail.png"
+          }
+          alt="avatar"
+        />
       </div>
     </div>
   );
