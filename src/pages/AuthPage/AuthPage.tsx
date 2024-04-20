@@ -7,7 +7,7 @@ import { Button, LinkButton, SignUpMessage } from "../../components";
 
 const AuthPage: React.FC = () => {
   const handleGmailAuthButton = () => {
-    window.location.href = "http://localhost:4000/auth/google";
+    window.location.href = `${import.meta.env.VITE_BACK_URL}/auth/google`;
   };
 
   return (
