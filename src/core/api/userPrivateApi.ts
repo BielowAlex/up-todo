@@ -1,7 +1,7 @@
-import { baseApi } from "../interceptor.ts";
+import { reauthApi } from "../interceptor.ts";
 import { User } from "../../types";
 
-export const userPrivateApi = baseApi.injectEndpoints({
+export const userPrivateApi = reauthApi.injectEndpoints({
   endpoints: (builder) => ({
     getMe: builder.query<User, void>({
       query: () => ({

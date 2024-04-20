@@ -18,10 +18,9 @@ export const authPrivateApi = baseApi.injectEndpoints({
       }),
     }),
     signOut: builder.mutation<any, void>({
-      query: (body) => ({
+      query: () => ({
         url: "/auth/sign-out",
         method: "POST",
-        body,
       }),
     }),
   }),
