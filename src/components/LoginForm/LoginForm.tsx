@@ -8,7 +8,7 @@ import { SignUpMessage } from "../SignUpMessage";
 import { Button, FormInput } from "../UI";
 import { useSignInMutation } from "../../core";
 import { loginSchema, transformErrorData } from "../../utils";
-import { ApiError, ApiErrorDetails, LoginDate, User } from "../../types";
+import { ApiErrorDetails, LoginDate, User } from "../../types";
 import { authActions, userActions } from "../../store";
 
 const LoginForm: React.FC = () => {
@@ -29,12 +29,14 @@ const LoginForm: React.FC = () => {
       try {
         const data: User = await signIn(values).unwrap();
 
+        console.log(data);
+
         dispatch(authActions.setAuthStatus(true));
         dispatch(userActions.setUser(data));
 
         setLoginError("");
         navigate("/");
-      } catch (error: ApiError | any) {
+      } catch (error) {
         const errorDetails: ApiErrorDetails = transformErrorData(error);
         setLoginError(errorDetails.message);
       } finally {

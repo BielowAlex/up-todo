@@ -1,10 +1,6 @@
 import { baseApi } from "../interceptor.ts";
 import { LoginDate, RegisterDate, User } from "../../types";
 
-// const providesError = (error: ApiError) => [
-//   { type: "ApiError", id: error.status },
-// ];
-
 export const authPrivateApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     signIn: builder.mutation<User, LoginDate>({
@@ -21,7 +17,15 @@ export const authPrivateApi = baseApi.injectEndpoints({
         body,
       }),
     }),
+    signOut: builder.mutation<any, void>({
+      query: (body) => ({
+        url: "/auth/sign-out",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useSignInMutation, useSignUpMutation } = authPrivateApi;
+export const { useSignInMutation, useSignUpMutation, useSignOutMutation } =
+  authPrivateApi;

@@ -1,11 +1,25 @@
 import React from "react";
 import style from "./style.module.scss";
-import { useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useGetMeQuery } from "../../core/api/userPrivateApi.ts";
+import { userActions } from "../../store";
 
 const UserSection: React.FC = () => {
   const { avatar, lastName, firstName } = useAppSelector(
     (state) => state.userReducer.user,
   );
+
+  const dispatch = useAppDispatch();
+
+  const { data, isSuccess, refetch } = useGetMeQuery();
+
+  React.useEffect(() => {
+    refetch();
+
+    if (data && isSuccess) {
+      dispatch(userActions.setUser(data));
+    }
+  }, [data, dispatch, isSuccess, refetch]);
   return (
     <div className={style.container}>
       <div className={style.greeting}>

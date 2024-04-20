@@ -10,7 +10,7 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist/es/constants";
-import { baseApi, reauthApi } from "../core/interceptor.ts";
+import { baseApi, reauthApi } from "../core";
 
 export const rootReducer = combineReducers({
   authReducer,
@@ -35,9 +35,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    })
-      .concat(reauthApi.middleware)
-      .concat(baseApi.middleware),
+    }).concat(reauthApi.middleware, baseApi.middleware),
 });
 
 export const persistor = persistStore(store);
