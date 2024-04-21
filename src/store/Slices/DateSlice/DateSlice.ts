@@ -6,7 +6,7 @@ export type DateSliceSchema = {
 };
 
 const initialState: DateSliceSchema = {
-  today: new Date().toISOString(),
+  today: new Date(Date.now()).toString(),
   selectedDate: "",
 };
 

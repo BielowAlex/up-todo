@@ -3,7 +3,7 @@ import style from "./style.module.scss";
 import cn from "classnames";
 import { v4 } from "uuid";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { formatDateToYYYYMMDD } from "../../utils/date/formatDateToYYYYMMDD.ts";
+import { formatDateToYYYYMMDD } from "../../utils";
 import { dateAction } from "../../store";
 
 type WeekDate = {

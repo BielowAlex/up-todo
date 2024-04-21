@@ -7,7 +7,7 @@ export enum TaskStatusEnum {
 }
 
 export type Task = {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   createdAt: string;
