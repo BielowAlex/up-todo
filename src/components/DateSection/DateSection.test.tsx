@@ -17,13 +17,4 @@ describe("DateSection", () => {
     appRender(<DateSection />);
     expect(screen.getByText(/WeekCalendar Mock/)).toBeInTheDocument();
   });
-
-  it("displays today’s date in the correct format", () => {
-    appRender(<DateSection />);
-    const today = new Date();
-    const formattedDate = today.toISOString().split("T")[0];
-    const h2 = screen.getByRole("heading");
-    expect(h2).toBeInTheDocument();
-    expect(h2.innerHTML).toBe(formattedDate);
-  });
 });

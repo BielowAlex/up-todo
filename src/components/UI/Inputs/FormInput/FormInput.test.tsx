@@ -47,7 +47,7 @@ describe("FormInput", () => {
     appRender(
       <Formik initialValues={{ testInput: "" }} onSubmit={vi.fn()}>
         <Form>
-          <FormInput name="testInput" label="Test Input" />
+          <FormInput type="password" name="testInput" label="Test Input" />
         </Form>
       </Formik>,
     );
