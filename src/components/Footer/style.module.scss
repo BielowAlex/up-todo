@@ -1,2 +1,94 @@
+@import "../../styles/variables/colors";
+@import "../../styles/variables/mixins";
+
 .container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 50px;
+  border-top: 1px solid $primary-text-color;
+  gap: 50px;
 }
+
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+  width: 100%;
+}
+
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  &Title {
+    color: $primary-text-color;
+    font-weight: bold;
+    @include adaptive-font(16, 12)
+  }
+
+  &Link {
+    color: $primary-text-color;
+    @include adaptive-font(16, 12)
+
+  }
+}
+
+.navSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+
+  h3 {
+    color: $primary-text-color;
+    font-weight: bold;
+    @include adaptive-font(16, 12)
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+}
+
+.link {
+  color: $primary-text-color;
+  @include adaptive-font(14, 12);
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.copyright {
+  color: $primary-text-color;
+  @include adaptive-font(14, 10);
+}
+
+
+@media screen and (max-width: 682px) {
+  .container {
+    padding: 20px 20px;
+  }
+
+  .head{
+    align-items: center;
+  }
+
+  .navSection{
+    align-items: center;
+  }
+}
+
+
