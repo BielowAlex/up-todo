@@ -15,7 +15,9 @@ const FormInput: React.FC<Props> = ({ name, label, type = "text" }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    helpers.setValue(value.replace(/\s/g, ""));
+    type === "password" || type === "email"
+      ? helpers.setValue(value.replace(/\s/g, ""))
+      : helpers.setValue(value);
   };
 
   return (

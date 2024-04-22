@@ -6,6 +6,7 @@ const UserSection: React.FC = () => {
   const { avatar, lastName, firstName } = useAppSelector(
     (state) => state.userReducer.user,
   );
+
   return (
     <div className={style.container}>
       <div className={style.greeting}>

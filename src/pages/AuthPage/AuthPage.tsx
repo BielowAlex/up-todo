@@ -4,22 +4,10 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Button, LinkButton, SignUpMessage } from "../../components";
-import { authActions, userActions } from "../../store";
-import { hardcodeUser } from "../../constant/user.constant.ts";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { useNavigate } from "react-router-dom";
 
 const AuthPage: React.FC = () => {
-  const isLogin = useAppSelector((state) => state.authReducer.isLogin);
-
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const handleGmailAuthButton = () => {
-    localStorage.setItem("token", "true");
-    dispatch(authActions.setAuthStatus(!isLogin));
-    dispatch(userActions.setUser(hardcodeUser));
-
-    navigate("/");
+    window.location.href = `${import.meta.env.VITE_BACK_URL}/auth/google`;
   };
 
   return (

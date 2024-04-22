@@ -1,19 +1,31 @@
 import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAppSelector } from "../../../hooks";
+import { useAppDispatch } from "../../../hooks";
+import { useGetMeQuery } from "../../../core/api/userPrivateApi.ts";
+import { userActions } from "../../../store";
 
 // type Props = {
 //   children: React.ReactNode;
 // };
 const RequireAuth: React.FC = () => {
-  const isLogin: boolean = useAppSelector((state) => state.authReducer.isLogin);
   const location = useLocation();
+  const { data, isSuccess, isError, refetch } = useGetMeQuery();
+  const dispatch = useAppDispatch();
 
-  if (!isLogin) {
+  React.useEffect(() => {
+    refetch();
+
+    if (data && isSuccess) {
+      console.log(data);
+      dispatch(userActions.setUser(data));
+    }
+  }, [data, dispatch, isSuccess, refetch]);
+
+  if (isError) {
     return <Navigate to="/auth" state={{ from: location }} replace />;
   }
 
-  return <Outlet />;
+  return isSuccess && <Outlet />;
 };
 
 export { RequireAuth };

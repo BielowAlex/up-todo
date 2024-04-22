@@ -3,11 +3,12 @@
 
 .container{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   gap: 20px;
   width: 100%;
+  min-height: 200px;
 
 }
 
@@ -16,7 +17,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
   gap: 50px;
+  width: 100%;
 }
 
 .head{
@@ -34,4 +37,19 @@
       text-decoration: underline;
     }
   }
+}
+
+.messageBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 50px 0;
+}
+
+.title{
+  max-width: 300px;
+  text-align: center;
+  color: $primary-text-color;
+  @include adaptive-font(24, 20)
 }

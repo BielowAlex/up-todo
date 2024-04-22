@@ -12,6 +12,13 @@
   max-width: 500px;
   background: $primary-text-color;
   overflow: hidden;
+  opacity: 1;
+  transition: all linear .3s;
+}
+
+.hide{
+  transform: translateX(100%);
+  opacity: 0;
 }
 
 .content {
@@ -21,11 +28,12 @@
   gap: 20px;
   background: $primary-text-color;
   padding: 20px;
+  width: 100%;
 }
 
 .desc {
   color: $back;
-  @include adaptive-font(18,14);
+  @include adaptive-font(18, 14);
 }
 
 .btn {
@@ -49,13 +57,11 @@
   z-index: 5;
   overflow: hidden;
 
-  h3 {
-    @include adaptive-font(24, 20);
-    margin: 0;
-    font-weight: bold;
-    color: $back;
-    cursor: default;
-  }
+  @include adaptive-font(24, 20);
+  margin: 0;
+  font-weight: bold;
+  color: $back;
+  cursor: default;
 }
 
 .buttons {

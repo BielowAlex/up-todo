@@ -3,7 +3,7 @@ import style from "./style.module.scss";
 import cn from "classnames";
 import { v4 } from "uuid";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { formatDateToYYYYMMDD } from "../../utils/date/formatDateToYYYYMMDD.ts";
+import { formatDateToYYYYMMDD } from "../../utils";
 import { dateAction } from "../../store";
 
 type WeekDate = {
@@ -44,9 +44,9 @@ const WeekCalendar: React.FC = () => {
           type="button"
           key={id}
           className={cn(style.day, date < today && style.past)}
-          onClick={() =>
-            dispatch(dateAction.setSelectedDate(formatDateToYYYYMMDD(date)))
-          }
+          onClick={() => {
+            dispatch(dateAction.setSelectedDate(formatDateToYYYYMMDD(date)));
+          }}
         >
           <span className={style.weekday}>
             {date.toLocaleString("en-US", { weekday: "short" })}

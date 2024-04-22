@@ -7,15 +7,25 @@ import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks";
 import { authActions, userActions } from "../../store";
+import { useSignOutMutation } from "../../core";
+import { transformErrorData } from "../../utils";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const handleLogout = () => {
-    dispatch(authActions.logout());
-    dispatch(userActions.clearData());
+  const [signOut] = useSignOutMutation();
 
-    navigate("/auth");
+  const handleLogout = async () => {
+    try {
+      dispatch(authActions.logout());
+      dispatch(userActions.clearData());
+
+      await signOut().unwrap();
+
+      navigate("/auth");
+    } catch (e) {
+      console.log(transformErrorData(e));
+    }
   };
 
   return (

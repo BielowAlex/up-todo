@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { TaskAction } from "../../store";
+import { TaskStatusEnum } from "../../types";
 
 const TaskListFilter: React.FC = () => {
   const tasksType = useAppSelector(
@@ -19,18 +20,22 @@ const TaskListFilter: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const handleGetTasks = useCallback(() => {
-    dispatch(TaskAction.setListType("tasks"));
+    dispatch(TaskAction.setListType(TaskStatusEnum.InProgress));
   }, [dispatch]);
   const handleGetArchiveTasks = useCallback(() => {
-    dispatch(TaskAction.setListType("archive"));
+    dispatch(TaskAction.setListType(TaskStatusEnum.Archived));
   }, [dispatch]);
   const handleGetCompletedTasks = useCallback(() => {
-    dispatch(TaskAction.setListType("done"));
+    dispatch(TaskAction.setListType(TaskStatusEnum.Completed));
+  }, [dispatch]);
+
+  const handleOpenCreateTaskModal = useCallback(() => {
+    dispatch(TaskAction.setIsCreateTaskModalOpen(true));
   }, [dispatch]);
 
   React.useEffect(() => {
     return () => {
-      dispatch(TaskAction.setListType("tasks"));
+      dispatch(TaskAction.setListType(TaskStatusEnum.InProgress));
     };
   }, [dispatch]);
 
@@ -39,7 +44,7 @@ const TaskListFilter: React.FC = () => {
       <TextButton
         className={cn(
           style.headContent,
-          tasksType === "tasks" && style.headContentActive,
+          tasksType === TaskStatusEnum.InProgress && style.headContentActive,
         )}
         handleClick={handleGetTasks}
       >
@@ -48,7 +53,7 @@ const TaskListFilter: React.FC = () => {
       <TextButton
         className={cn(
           style.headContent,
-          tasksType === "done" && style.headContentActive,
+          tasksType === TaskStatusEnum.Completed && style.headContentActive,
         )}
         handleClick={handleGetCompletedTasks}
       >
@@ -57,15 +62,16 @@ const TaskListFilter: React.FC = () => {
       <TextButton
         className={cn(
           style.headContent,
-          tasksType === "archive" && style.headContentActive,
+          tasksType === TaskStatusEnum.Archived && style.headContentActive,
         )}
         handleClick={handleGetArchiveTasks}
       >
         Archived <FontAwesomeIcon icon={faBoxArchive} />
       </TextButton>
       <TextButton
+        handleClick={handleOpenCreateTaskModal}
         className={cn(style.headContent, style.headContentActive)}
-        disabled={tasksType !== "tasks"}
+        disabled={tasksType !== TaskStatusEnum.InProgress}
       >
         Add <FontAwesomeIcon icon={faCalendarPlus} />
       </TextButton>

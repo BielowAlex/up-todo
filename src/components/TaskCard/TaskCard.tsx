@@ -4,51 +4,145 @@ import { TextButton } from "../UI";
 import { TaskStatusEnum } from "../../types";
 import {
   faBoxArchive,
+  faBoxesPacking,
   faCircleCheck,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Marquee from "react-fast-marquee";
+import {
+  useDeleteTaskMutation,
+  useGetUserTaskQuery,
+  useUpdateTaskMutation,
+} from "../../core/api/taskPrivateApi.ts";
+import { formatDateToYYYYMMDD, transformErrorData } from "../../utils";
+import { useAppSelector } from "../../hooks";
+import { useDelayUnmount } from "../../hooks/useDelayUnmount.ts";
+import cn from "classnames";
 
 type Props = {
+  _id: string;
   title: string;
   desc: string;
   status: TaskStatusEnum;
+  date: string;
 };
 
-const TaskCard: React.FC<Props> = React.memo(({ title, desc }) => {
-  return (
-    <li className={style.container}>
-      <div className={style.content}>
-        <div className={style.task}>
-          <Marquee pauseOnHover className={style.title}>
-            <h3 className="task-title">{title}</h3>
-          </Marquee>
-          <p
-            className={style.desc}
-            suppressContentEditableWarning={true}
-            contentEditable={true}
-            onFocus={(e) => {
-              console.log(e.target.innerText);
-            }}
-          >
-            {desc}
-          </p>
-        </div>
-        <div className={style.buttons}>
-          <TextButton tooltip="Complete">
-            <FontAwesomeIcon icon={faCircleCheck} />
-          </TextButton>
-          <TextButton tooltip="Remove">
-            <FontAwesomeIcon icon={faTrash} />
-          </TextButton>
-          <TextButton tooltip="Archive">
-            <FontAwesomeIcon icon={faBoxArchive} />
-          </TextButton>
-        </div>
-      </div>
-    </li>
-  );
-});
+const TaskCard: React.FC<Props> = React.memo(
+  ({ _id, title, desc, date, status }) => {
+    const [isMounted, setIsMounted] = React.useState<boolean>(true);
+    const { selectedDate } = useAppSelector((state) => state.dateReducer);
+
+    const selectedTaskType = useAppSelector(
+      (state) => state.taskReducer.selectedTaskType,
+    );
+
+    const isShown = useDelayUnmount(isMounted, 500);
+
+    const [updateTask] = useUpdateTaskMutation();
+    const [deleteTask] = useDeleteTaskMutation();
+    const { refetch } = useGetUserTaskQuery({
+      status: selectedTaskType,
+      date: formatDateToYYYYMMDD(new Date(selectedDate)),
+    });
+
+    const handleDelete = React.useCallback(async () => {
+      try {
+        await deleteTask(_id).unwrap();
+        setIsMounted(false);
+      } catch (e) {
+        console.log(transformErrorData(e));
+      }
+    }, [_id, deleteTask]);
+
+    const handleChangeStatus = React.useCallback(
+      async (status: TaskStatusEnum) => {
+        try {
+          await updateTask({
+            _id,
+            status,
+            title,
+            description: desc,
+            date,
+          }).unwrap();
+          setIsMounted(false);
+        } catch (e) {
+          console.log(transformErrorData(e));
+        }
+      },
+      [_id, date, desc, title, updateTask],
+    );
+
+    const handleUnarchive = React.useCallback(async () => {
+      try {
+        await updateTask({
+          _id,
+          status: TaskStatusEnum.InProgress,
+          title,
+          description: desc,
+          date: formatDateToYYYYMMDD(new Date(Date.now())),
+        }).unwrap();
+        setIsMounted((prev) => !prev);
+      } catch (e) {
+        console.log(transformErrorData(e));
+      }
+    }, [_id, desc, title, updateTask]);
+
+    React.useEffect(() => {
+      refetch();
+    }, [refetch, isShown]);
+
+    return (
+      isShown && (
+        <li className={cn(style.container, !isMounted && style.hide)}>
+          <div className={style.content}>
+            <div className={style.task}>
+              <h3 className={style.title}>{title}</h3>
+              <p
+                className={style.desc}
+                suppressContentEditableWarning={true}
+                contentEditable={true}
+              >
+                {desc}
+              </p>
+            </div>
+            <div className={style.buttons}>
+              {status === TaskStatusEnum.InProgress && (
+                <TextButton
+                  tooltip="Complete"
+                  handleClick={() =>
+                    handleChangeStatus(TaskStatusEnum.Completed)
+                  }
+                >
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                </TextButton>
+              )}
+              <TextButton tooltip="Remove" handleClick={handleDelete}>
+                <FontAwesomeIcon icon={faTrash} />
+              </TextButton>
+              {status !== TaskStatusEnum.Completed && (
+                <TextButton
+                  tooltip={
+                    status === TaskStatusEnum.Archived ? "Unarchive" : "Archive"
+                  }
+                  handleClick={() =>
+                    status === TaskStatusEnum.Archived
+                      ? handleUnarchive()
+                      : handleChangeStatus(TaskStatusEnum.Archived)
+                  }
+                >
+                  {status === TaskStatusEnum.Archived ? (
+                    <FontAwesomeIcon icon={faBoxesPacking} />
+                  ) : (
+                    <FontAwesomeIcon icon={faBoxArchive} />
+                  )}
+                </TextButton>
+              )}
+            </div>
+          </div>
+        </li>
+      )
+    );
+  },
+);
 
 export { TaskCard };
