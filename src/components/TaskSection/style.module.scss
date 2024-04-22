@@ -50,6 +50,7 @@
 .title{
   max-width: 300px;
   text-align: center;
+  line-height: 1.3;
   color: $primary-text-color;
   @include adaptive-font(24, 20)
 }

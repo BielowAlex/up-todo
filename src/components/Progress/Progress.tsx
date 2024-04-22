@@ -13,7 +13,9 @@ const Progress: React.FC = () => {
   return (
     <div className={style.container}>
       <h2 className={style.title}>
-        Your progress {data ? `${data.completedTask} / ${data.total}` : "0/0"}
+        {data && data.total
+          ? `Your progress ${data.completedTask} / ${data.total}`
+          : "You currently have no To-Do tasks"}
       </h2>
       <div className={style.progress}>
         <span

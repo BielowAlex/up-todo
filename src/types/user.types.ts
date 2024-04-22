@@ -10,3 +10,8 @@ export type User = {
   updatedAt: string;
   __v: number;
 };
+
+export type UpdatePasswordBody = {
+  currentPassword: string;
+  newPassword: string;
+};

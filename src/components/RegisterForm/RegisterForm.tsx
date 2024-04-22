@@ -4,7 +4,7 @@ import style from "./style.module.scss";
 import { FormikHelpers } from "formik/dist/types";
 import { Button, FormInput } from "../UI";
 import { registerSchema, transformErrorData } from "../../utils";
-import { ApiError, ApiErrorDetails, RegisterDate, User } from "../../types";
+import { ApiErrorDetails, RegisterDate, User } from "../../types";
 import { useSignUpMutation } from "../../core";
 import { authActions, userActions } from "../../store";
 import { useAppDispatch } from "../../hooks";
@@ -40,7 +40,7 @@ const RegisterForm: React.FC = () => {
 
         setLoginError("");
         navigate("/");
-      } catch (error: ApiError | any) {
+      } catch (error) {
         const errorDetails: ApiErrorDetails = transformErrorData(error);
         setLoginError(errorDetails.message);
       } finally {

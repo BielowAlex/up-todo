@@ -7,6 +7,7 @@ import {
   HomePageAsync,
   LoginEmailPageAsync,
   RegisterEmailPageAsync,
+  SettingsPageAsync,
 } from "../pages";
 
 const App: React.FC = () => {
@@ -23,6 +24,7 @@ const App: React.FC = () => {
         <Route element={<RequireAuth />}>
           <Route element={<MainLayout />}>
             <Route index element={<HomePageAsync />} />
+            <Route path="/settings" element={<SettingsPageAsync />} />
           </Route>
         </Route>
       </Routes>

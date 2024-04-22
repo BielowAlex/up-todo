@@ -1,4 +1,6 @@
 @import "../../styles/variables/colors";
+@import "../../styles/variables/mixins";
+
 .container {
   position: fixed;
   display: flex;
@@ -12,4 +14,15 @@
   background: $back;
   width: 100%;
   z-index: 99999;
+}
+
+.backBtn{
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  svg{
+
+    @include adaptive-font(24,18);
+  }
 }
