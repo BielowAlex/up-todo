@@ -29,8 +29,6 @@ const LoginForm: React.FC = () => {
       try {
         const data: User = await signIn(values).unwrap();
 
-        console.log(data);
-
         dispatch(authActions.setAuthStatus(true));
         dispatch(userActions.setUser(data));
 
