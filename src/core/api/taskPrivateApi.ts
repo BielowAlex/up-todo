@@ -1,5 +1,5 @@
 import { reauthApi } from "../interceptor.ts";
-import { Task, TaskStatusEnum } from "../../types";
+import { ProgressResponse, Task, TaskStatusEnum } from "../../types";
 import { CreateTaskDate } from "../../components/CreateTaskForm";
 
 export const TaskPrivateApi = reauthApi.injectEndpoints({
@@ -14,7 +14,6 @@ export const TaskPrivateApi = reauthApi.injectEndpoints({
         params,
       }),
       keepUnusedDataFor: 0,
-      providesTags: ["Task"],
     }),
     createTask: builder.mutation<Task, CreateTaskDate>({
       query: (body) => ({
@@ -33,13 +32,22 @@ export const TaskPrivateApi = reauthApi.injectEndpoints({
         method: "PATCH",
         body: rest,
       }),
-      // invalidatesTags: ["Task"],
+      invalidatesTags: ["Task"],
+    }),
+    getProgress: builder.query<ProgressResponse, string>({
+      query: (date) => ({
+        url: "/task/progress",
+        method: "GET",
+        params: { date },
+      }),
+      providesTags: ["Task"],
     }),
     deleteTask: builder.mutation<any, string>({
       query: (id) => ({
         url: `/task/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Task"],
     }),
   }),
 });
@@ -49,4 +57,5 @@ export const {
   useCreateTaskMutation,
   useUpdateTaskMutation,
   useDeleteTaskMutation,
+  useGetProgressQuery,
 } = TaskPrivateApi;

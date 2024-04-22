@@ -6,6 +6,11 @@ export enum TaskStatusEnum {
   Archived = "ARCHIVED",
 }
 
+export type ProgressResponse = {
+  completedTask: number;
+  total: number;
+};
+
 export type Task = {
   _id: string;
   title: string;
