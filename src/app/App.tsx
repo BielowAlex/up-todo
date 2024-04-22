@@ -6,7 +6,6 @@ import {
   AuthPageAsync,
   HomePageAsync,
   LoginEmailPageAsync,
-  PrivacyPolicyPageAsync,
   RegisterEmailPageAsync,
 } from "../pages";
 
@@ -21,7 +20,6 @@ const App: React.FC = () => {
             <Route path="sign-up" element={<RegisterEmailPageAsync />} />
           </Route>
         </Route>
-        <Route path="/privacy-policy" element={<PrivacyPolicyPageAsync />} />
         <Route element={<RequireAuth />}>
           <Route element={<MainLayout />}>
             <Route index element={<HomePageAsync />} />

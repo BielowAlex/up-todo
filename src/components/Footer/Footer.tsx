@@ -20,9 +20,13 @@ const Footer: React.FC = () => {
         <div className={style.navSection}>
           <h3>Other links:</h3>
           <nav className={style.nav}>
-            <Link to="privacy-policy" className={style.link}>
+            <a
+              href="https://www.freeprivacypolicy.com/live/bd6535ef-85d7-4afc-a3aa-2ca91a5fb519"
+              target="_blank"
+              className={style.link}
+            >
               Privacy Policy
-            </Link>
+            </a>
             <Link to="about-us" className={style.link}>
               About us
             </Link>

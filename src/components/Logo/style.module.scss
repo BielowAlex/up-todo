@@ -1,9 +1,19 @@
+@import "../../styles/variables/colors";
+@import "../../styles/variables/mixins";
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  img{
-    width: 50px;
-    height: 50px;
+  gap: 10px;
+  svg{
+    width: 30px;
+    height: 30px;
+  }
+
+  h2{
+    color: $primary-text-color;
+    font-weight: bold;
+    @include adaptive-font(16,14);
   }
 }
