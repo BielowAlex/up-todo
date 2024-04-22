@@ -1,6 +1,6 @@
 import React from "react";
 
-export const useDelayUnmount = (isMounted: string, delay: number): boolean => {
+export const useDelayUnmount = (isMounted: boolean, delay: number): boolean => {
   const [shouldRender, setShouldRender] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -12,7 +12,9 @@ export const useDelayUnmount = (isMounted: string, delay: number): boolean => {
       timeoutId = setTimeout(() => setShouldRender(false), delay);
     }
 
-    return () => clearTimeout(timeoutId);
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [isMounted, shouldRender, delay]);
 
   return shouldRender;

@@ -44,9 +44,9 @@ const WeekCalendar: React.FC = () => {
           type="button"
           key={id}
           className={cn(style.day, date < today && style.past)}
-          onClick={() =>
-            dispatch(dateAction.setSelectedDate(formatDateToYYYYMMDD(date)))
-          }
+          onClick={() => {
+            dispatch(dateAction.setSelectedDate(formatDateToYYYYMMDD(date)));
+          }}
         >
           <span className={style.weekday}>
             {date.toLocaleString("en-US", { weekday: "short" })}

@@ -1,22 +1,32 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { TaskStatusEnum } from "../../../types";
 
 export type TaskSliceSchema = {
-  selectedTaskType: "tasks" | "archive" | "done";
+  selectedTaskType: TaskStatusEnum;
   selectedDate: string;
+  isCreateTaskModalOpen: boolean;
 };
 
 const initialState: TaskSliceSchema = {
-  selectedTaskType: "tasks",
+  selectedTaskType: TaskStatusEnum.InProgress,
   selectedDate: "",
+  isCreateTaskModalOpen: false,
 };
 
 const taskSlice = createSlice({
   name: "taskSlice",
   initialState,
   reducers: {
+    setIsCreateTaskModalOpen: (
+      state: TaskSliceSchema,
+      action: PayloadAction<boolean>,
+    ) => {
+      state.isCreateTaskModalOpen = action.payload;
+    },
+
     setListType: (
       state: TaskSliceSchema,
-      action: PayloadAction<"tasks" | "archive" | "done">,
+      action: PayloadAction<TaskStatusEnum>,
     ) => {
       state.selectedTaskType = action.payload;
     },
@@ -25,11 +35,12 @@ const taskSlice = createSlice({
 
 const {
   reducer: taskReducer,
-  actions: { setListType },
+  actions: { setListType, setIsCreateTaskModalOpen },
 } = taskSlice;
 
 const TaskAction = {
   setListType,
+  setIsCreateTaskModalOpen,
 };
 
 export { TaskAction, taskReducer };
