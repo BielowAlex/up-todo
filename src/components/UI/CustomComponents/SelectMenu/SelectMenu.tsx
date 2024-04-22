@@ -1,12 +1,14 @@
 import React from "react";
 import style from "./style.module.scss";
+import cn from "classnames";
 
 type Props = {
   children: React.ReactNode;
   buttonIcon: React.ReactNode;
+  className?: string;
 };
 
-const SelectMenu: React.FC<Props> = ({ buttonIcon, children }) => {
+const SelectMenu: React.FC<Props> = ({ buttonIcon, children, className }) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
   const handleToggleVisible = () => {
@@ -14,7 +16,7 @@ const SelectMenu: React.FC<Props> = ({ buttonIcon, children }) => {
   };
 
   return (
-    <div className={style.container}>
+    <div className={cn(style.container, className)}>
       <button className={style.btn} onClick={handleToggleVisible}>
         {buttonIcon}
       </button>

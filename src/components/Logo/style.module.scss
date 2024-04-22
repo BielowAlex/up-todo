@@ -14,6 +14,6 @@
   h2{
     color: $primary-text-color;
     font-weight: bold;
-    @include adaptive-font(16,14);
+    @include adaptive-font(19,14);
   }
 }

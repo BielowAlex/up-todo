@@ -10,32 +10,41 @@
 
 }
 
-.greeting{
+.greeting {
   display: flex;
   flex-direction: column;
   gap: 15px;
   align-items: flex-start;
 
-  &Title{
-    @include adaptive-font(28,18);
+  &Title {
+    @include adaptive-font(28, 18);
     color: $primary-text-color;
   }
-  &Username{
+
+  &Username {
     font-weight: bold;
-    @include adaptive-font(28,18);
+    @include adaptive-font(28, 18);
     color: $primary-text-color;
   }
 }
 
-.avatar{
+.avatar {
   position: relative;
   display: flex;
   width: 100px;
-  img{
+
+  img {
     width: 100%;
     object-fit: cover;
     border-radius: 50%;
     padding: 5px;
     border: 1px solid $primary-text-color;
   }
+}
+
+
+.settings {
+  position: absolute;
+  right: -20px;
+  top: -5px;
 }

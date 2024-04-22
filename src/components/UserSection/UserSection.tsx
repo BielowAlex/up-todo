@@ -1,11 +1,34 @@
 import React from "react";
 import style from "./style.module.scss";
-import { useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { SelectMenu, TextButton } from "../UI";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import { useSignOutMutation } from "../../core";
+import { authActions, userActions } from "../../store";
+import { transformErrorData } from "../../utils";
 
 const UserSection: React.FC = () => {
   const { avatar, lastName, firstName } = useAppSelector(
     (state) => state.userReducer.user,
   );
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [signOut] = useSignOutMutation();
+
+  const handleLogout = async () => {
+    try {
+      dispatch(authActions.logout());
+      dispatch(userActions.clearData());
+
+      await signOut().unwrap();
+
+      navigate("/auth");
+    } catch (e) {
+      console.log(transformErrorData(e));
+    }
+  };
 
   return (
     <div className={style.container}>
@@ -16,6 +39,16 @@ const UserSection: React.FC = () => {
         </span>
       </div>
       <div className={style.avatar}>
+        <SelectMenu
+          buttonIcon={<FontAwesomeIcon icon={faGear} />}
+          className={style.settings}
+        >
+          <TextButton handleClick={() => navigate("settings")}>
+            Settings
+          </TextButton>
+          <TextButton>Privacy</TextButton>
+          <TextButton handleClick={handleLogout}>Logout</TextButton>
+        </SelectMenu>
         <img
           width={100}
           height={100}
