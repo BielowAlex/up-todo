@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks";
 import { useGetMeQuery } from "../../../core/api/userPrivateApi.ts";
-import { userActions } from "../../../store";
+import { authActions, userActions } from "../../../store";
 
 // type Props = {
 //   children: React.ReactNode;
@@ -18,6 +18,7 @@ const RequireAuth: React.FC = () => {
     if (data && isSuccess) {
       console.log(data);
       dispatch(userActions.setUser(data));
+      dispatch(authActions.setAuthStatus(true));
     }
   }, [data, dispatch, isSuccess, refetch]);
 

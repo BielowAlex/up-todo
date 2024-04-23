@@ -4,16 +4,19 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { SelectMenu, TextButton } from "../UI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useSignOutMutation } from "../../core";
 import { authActions, userActions } from "../../store";
 import { transformErrorData } from "../../utils";
+
+const defaultAvatar =
+  "https://a0.anyrgb.com/pngimg/1236/14/no-facial-features-no-avatar-no-eyes-expressionless-avatar-icon-delayering-avatar-user-avatar-men-head-portrait-thumbnail.png";
 
 const UserSection: React.FC = () => {
   const { avatar, lastName, firstName } = useAppSelector(
     (state) => state.userReducer.user,
   );
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const dispatch = useAppDispatch();
   const [signOut] = useSignOutMutation();
 
@@ -46,16 +49,12 @@ const UserSection: React.FC = () => {
           <TextButton handleClick={() => navigate("settings")}>
             Settings
           </TextButton>
-          <TextButton>Privacy</TextButton>
           <TextButton handleClick={handleLogout}>Logout</TextButton>
         </SelectMenu>
         <img
           width={100}
           height={100}
-          src={
-            avatar ||
-            "https://a0.anyrgb.com/pngimg/1236/14/no-facial-features-no-avatar-no-eyes-expressionless-avatar-icon-delayering-avatar-user-avatar-men-head-portrait-thumbnail.png"
-          }
+          src={avatar || defaultAvatar}
           alt="avatar"
         />
       </div>

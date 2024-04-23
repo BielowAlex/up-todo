@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Formik } from "formik";
 import { FormikHelpers } from "formik/dist/types";
 import style from "./style.module.scss";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks";
 import { SignUpMessage } from "../SignUpMessage";
 import { Button, FormInput } from "../UI";
@@ -18,7 +18,7 @@ const LoginForm: React.FC = () => {
 
   //tools
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
   //api
   const [signIn, { isLoading }] = useSignInMutation();

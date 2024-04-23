@@ -1,0 +1,26 @@
+@import "../../styles/variables/mixins";
+@import "../../styles/variables/colors";
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+  h2{
+    font-weight: bold;
+    @include adaptive-font(24,18);
+    color: $primary-text-color;
+  }
+  p{
+    color: $primary-text-color;
+    @include adaptive-font(16,14);
+    line-height: 1.2;
+  }
+  h3{
+    font-weight: bold;
+    @include adaptive-font(18,16);
+    color: $primary-text-color;
+    line-height: 1.4;
+  }
+}

@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { MainLayout } from "../layouts";
 import { RequireAuth } from "../utils";
 import {
+  AboutUsPageAsync,
   AuthPageAsync,
   HomePageAsync,
   LoginEmailPageAsync,
@@ -20,6 +21,9 @@ const App: React.FC = () => {
             <Route index element={<LoginEmailPageAsync />} />
             <Route path="sign-up" element={<RegisterEmailPageAsync />} />
           </Route>
+        </Route>
+        <Route element={<MainLayout />}>
+          <Route path="/about-us" element={<AboutUsPageAsync />} />
         </Route>
         <Route element={<RequireAuth />}>
           <Route element={<MainLayout />}>
