@@ -17,7 +17,7 @@ export const transformErrorData = (error: ApiError | any) => {
       return details;
     }
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 
   return error;

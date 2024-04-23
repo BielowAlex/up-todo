@@ -23,27 +23,23 @@ const TaskSection: React.FC = React.memo(() => {
   );
   const formattedDate = formatDateToYYYYMMDD(new Date(selectedDate));
 
-  console.log(selectedTaskType);
-
   const { data, isSuccess, refetch } = useGetUserTaskQuery({
     status: selectedTaskType,
     date: formattedDate,
   });
 
-  console.log(formatDateToYYYYMMDD(new Date(selectedDate)));
-
   React.useEffect(() => {
-    console.log(formattedDate);
     refetch();
   }, [refetch, formattedDate]);
 
   return (
     <section className={style.container}>
+      <h2 className={style.title}>ToDo - list</h2>
       <TaskListFilter />
       <ul className={style.list}>
         {isSuccess && !data.length ? (
           <li className={style.messageBox}>
-            <h3 className={style.title}>
+            <h3 className={style.messageBoxContent}>
               You currently have no To-Do tasks. Feel free to add new tasks to
               get started!
               <FontAwesomeIcon icon={faFaceSmileWink} />

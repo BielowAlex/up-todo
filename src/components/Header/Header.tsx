@@ -9,8 +9,6 @@ import { useNavigate } from "react-router-dom";
 const Header: React.FC = () => {
   const navigate = useNavigate();
 
-  console.log(window.location.pathname);
-
   return (
     <header className={style.container}>
       {window.location.pathname !== "/" && (

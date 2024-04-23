@@ -15,12 +15,15 @@ const RequireAuth: React.FC = () => {
   React.useEffect(() => {
     refetch();
 
-    if (data && isSuccess) {
-      console.log(data);
+    if (!isError && data && isSuccess) {
       dispatch(userActions.setUser(data));
       dispatch(authActions.setAuthStatus(true));
     }
-  }, [data, dispatch, isSuccess, refetch]);
+    if (isError) {
+      dispatch(userActions.clearData());
+      dispatch(authActions.logout());
+    }
+  }, [data, dispatch, isError, isSuccess, refetch]);
 
   if (isError) {
     return <Navigate to="/auth" state={{ from: location }} replace />;

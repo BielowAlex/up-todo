@@ -9,6 +9,7 @@ export const userPrivateApi = reauthApi.injectEndpoints({
         method: "GET",
       }),
       providesTags: ["User"],
+      keepUnusedDataFor: 0,
     }),
     updateMe: builder.mutation<
       User,

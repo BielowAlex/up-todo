@@ -46,7 +46,9 @@ const AboutUsPage: React.FC = () => {
         daily affairs and achieve greater efficiency. Join us today and take
         control of your time like never before!
       </p>
-      <Button variant="default">Lets start</Button>
+      <Button to="/auth" variant="default">
+        Lets start
+      </Button>
     </div>
   );
 };

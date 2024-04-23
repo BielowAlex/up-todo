@@ -34,7 +34,6 @@ const RegisterForm: React.FC = () => {
     async (values: RegisterDate, actions: FormikHelpers<RegisterDate>) => {
       try {
         const data: User = await signUp(values).unwrap();
-        console.log(data);
         dispatch(authActions.setAuthStatus(true));
         dispatch(userActions.setUser(data));
 

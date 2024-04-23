@@ -41,7 +41,7 @@ const baseQueryWithReauth: BaseQueryFn<
         console.error("Failed to refresh token");
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   }
   return result;
