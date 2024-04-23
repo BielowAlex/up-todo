@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./style.module.scss";
-import { TextButton } from "../UI";
+import { Button } from "../UI";
 import { TaskStatusEnum } from "../../types";
 import {
   faBoxArchive,
@@ -112,7 +112,8 @@ const TaskCard: React.FC<Props> = React.memo(
             </div>
             <div className={style.buttons}>
               {status === TaskStatusEnum.InProgress && (
-                <TextButton
+                <Button
+                  variant="link"
                   tooltip="Complete"
                   handleClick={() =>
                     handleChangeStatus(TaskStatusEnum.Completed)
@@ -120,17 +121,19 @@ const TaskCard: React.FC<Props> = React.memo(
                   disabled={isDisabled}
                 >
                   <FontAwesomeIcon icon={faCircleCheck} />
-                </TextButton>
+                </Button>
               )}
-              <TextButton
+              <Button
+                variant="link"
                 tooltip="Remove"
                 handleClick={handleDelete}
                 disabled={isDisabled}
               >
                 <FontAwesomeIcon icon={faTrash} />
-              </TextButton>
+              </Button>
               {status !== TaskStatusEnum.Completed && (
-                <TextButton
+                <Button
+                  variant="link"
                   tooltip={isArchived ? "Unarchive" : "Archive"}
                   handleClick={handleArchiveButton}
                   disabled={isDisabled}
@@ -140,7 +143,7 @@ const TaskCard: React.FC<Props> = React.memo(
                   ) : (
                     <FontAwesomeIcon icon={faBoxArchive} />
                   )}
-                </TextButton>
+                </Button>
               )}
             </div>
           </div>

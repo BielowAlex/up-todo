@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import style from "./style.module.scss";
-import { TextButton } from "../UI";
+import { Button } from "../UI";
 import cn from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -46,7 +46,8 @@ const TaskListFilter: React.FC = () => {
 
   return (
     <div className={style.head}>
-      <TextButton
+      <Button
+        variant="link"
         className={cn(
           style.headContent,
           tasksType === TaskStatusEnum.InProgress && style.headContentActive,
@@ -54,8 +55,9 @@ const TaskListFilter: React.FC = () => {
         handleClick={handleGetTasks}
       >
         Tasks <FontAwesomeIcon icon={faListCheck} />
-      </TextButton>
-      <TextButton
+      </Button>
+      <Button
+        variant="link"
         className={cn(
           style.headContent,
           tasksType === TaskStatusEnum.Completed && style.headContentActive,
@@ -63,8 +65,9 @@ const TaskListFilter: React.FC = () => {
         handleClick={handleGetCompletedTasks}
       >
         Completed <FontAwesomeIcon icon={faCheckDouble} />
-      </TextButton>
-      <TextButton
+      </Button>
+      <Button
+        variant="link"
         className={cn(
           style.headContent,
           tasksType === TaskStatusEnum.Archived && style.headContentActive,
@@ -72,14 +75,15 @@ const TaskListFilter: React.FC = () => {
         handleClick={handleGetArchiveTasks}
       >
         Archived <FontAwesomeIcon icon={faBoxArchive} />
-      </TextButton>
-      <TextButton
+      </Button>
+      <Button
+        variant="link"
         handleClick={handleOpenCreateTaskModal}
         className={cn(style.headContent, style.headContentActive)}
         disabled={tasksType !== TaskStatusEnum.InProgress || isDisabled}
       >
         Add <FontAwesomeIcon icon={faCalendarPlus} />
-      </TextButton>
+      </Button>
     </div>
   );
 };

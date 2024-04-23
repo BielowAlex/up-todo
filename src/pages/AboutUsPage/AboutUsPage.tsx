@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./style.module.scss";
-import { LinkButton } from "../../components";
+import { Button } from "../../components";
 
 const AboutUsPage: React.FC = () => {
   return (
@@ -46,7 +46,7 @@ const AboutUsPage: React.FC = () => {
         daily affairs and achieve greater efficiency. Join us today and take
         control of your time like never before!
       </p>
-      <LinkButton to="/auth">Lets start</LinkButton>
+      <Button variant="default">Lets start</Button>
     </div>
   );
 };

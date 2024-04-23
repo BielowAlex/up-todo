@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style.module.scss";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { SelectMenu, TextButton } from "../UI";
+import { Button, SelectMenu } from "../UI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { NavigateFunction, useNavigate } from "react-router-dom";
@@ -46,10 +46,12 @@ const UserSection: React.FC = () => {
           buttonIcon={<FontAwesomeIcon icon={faGear} />}
           className={style.settings}
         >
-          <TextButton handleClick={() => navigate("settings")}>
+          <Button variant="link" handleClick={() => navigate("settings")}>
             Settings
-          </TextButton>
-          <TextButton handleClick={handleLogout}>Logout</TextButton>
+          </Button>
+          <Button variant="link" handleClick={handleLogout}>
+            Logout
+          </Button>
         </SelectMenu>
         <img
           width={100}

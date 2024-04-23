@@ -1,15 +1,30 @@
 @import "../../../../styles/variables/colors";
-.btn {
-  display: block;
+@import "../../../../styles/variables/mixins";
+
+.btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  cursor: pointer ;
+  box-sizing: border-box;
+  text-decoration: none;
+  @include adaptive-font(16,14);
+  min-height: 40px;
+}
+
+.none{
+  border: none;
+  background: none;
+  color: $primary-text-color;
+}
+
+.default {
   padding: 10px 20px;
   background: $back;
   color: $primary-text-color;
   border: 1px solid $primary-text-color;
-  cursor: pointer ;
-  //border-radius: 15px;
-  box-sizing: border-box;
   transition: all .2s ease-in-out;
-  font-size: 14px;
   span{
     transition: all .2s ease-in-out;
     color: $primary-text-color !important;
@@ -27,5 +42,27 @@
 
   &:active{
     opacity: .4;
+  }
+}
+
+.link {
+  background: inherit;
+  box-shadow: none;
+  border:none;
+  color:$primary-text-color ;
+  text-decoration: underline;
+  line-height: 1.4;
+  transition: .4s linear all;
+
+
+  &:disabled{
+    opacity: 0.3;
+    text-decoration: none;
+    cursor: no-drop;
+  }
+
+  &:hover{
+    font-weight: bolder;
+    text-decoration: none;
   }
 }
