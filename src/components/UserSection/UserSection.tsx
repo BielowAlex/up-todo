@@ -9,7 +9,7 @@ import { useSignOutMutation } from "../../core";
 import { authActions, userActions } from "../../store";
 import { transformErrorData } from "../../utils";
 
-const defaultAvatar =
+const defaultAvatar: string =
   "https://a0.anyrgb.com/pngimg/1236/14/no-facial-features-no-avatar-no-eyes-expressionless-avatar-icon-delayering-avatar-user-avatar-men-head-portrait-thumbnail.png";
 
 const UserSection: React.FC = () => {
