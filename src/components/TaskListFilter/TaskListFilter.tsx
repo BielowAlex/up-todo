@@ -17,6 +17,11 @@ const TaskListFilter: React.FC = () => {
   const tasksType = useAppSelector(
     (state) => state.taskReducer.selectedTaskType,
   );
+  const selectedDate = useAppSelector(
+    (state) => state.dateReducer.selectedDate,
+  );
+  const isDisabled = new Date(selectedDate).getDate() < new Date().getDate();
+
   const dispatch = useAppDispatch();
 
   const handleGetTasks = useCallback(() => {
@@ -71,7 +76,7 @@ const TaskListFilter: React.FC = () => {
       <TextButton
         handleClick={handleOpenCreateTaskModal}
         className={cn(style.headContent, style.headContentActive)}
-        disabled={tasksType !== TaskStatusEnum.InProgress}
+        disabled={tasksType !== TaskStatusEnum.InProgress || isDisabled}
       >
         Add <FontAwesomeIcon icon={faCalendarPlus} />
       </TextButton>

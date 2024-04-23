@@ -31,7 +31,8 @@ const TaskCard: React.FC<Props> = React.memo(
   ({ _id, title, desc, date, status }) => {
     const [isMounted, setIsMounted] = React.useState<boolean>(true);
     const { selectedDate } = useAppSelector((state) => state.dateReducer);
-
+    const isDisabled = new Date(selectedDate).getDate() < new Date().getDate();
+    const isArchived = status === TaskStatusEnum.Archived;
     const selectedTaskType = useAppSelector(
       (state) => state.taskReducer.selectedTaskType,
     );
@@ -87,10 +88,14 @@ const TaskCard: React.FC<Props> = React.memo(
       }
     }, [_id, desc, title, updateTask]);
 
+    const handleArchiveButton = () =>
+      status === TaskStatusEnum.Archived
+        ? handleUnarchive()
+        : handleChangeStatus(TaskStatusEnum.Archived);
+
     React.useEffect(() => {
       refetch();
     }, [refetch, isShown]);
-
     return (
       isShown && (
         <li className={cn(style.container, !isMounted && style.hide)}>
@@ -112,25 +117,25 @@ const TaskCard: React.FC<Props> = React.memo(
                   handleClick={() =>
                     handleChangeStatus(TaskStatusEnum.Completed)
                   }
+                  disabled={isDisabled}
                 >
                   <FontAwesomeIcon icon={faCircleCheck} />
                 </TextButton>
               )}
-              <TextButton tooltip="Remove" handleClick={handleDelete}>
+              <TextButton
+                tooltip="Remove"
+                handleClick={handleDelete}
+                disabled={isDisabled}
+              >
                 <FontAwesomeIcon icon={faTrash} />
               </TextButton>
               {status !== TaskStatusEnum.Completed && (
                 <TextButton
-                  tooltip={
-                    status === TaskStatusEnum.Archived ? "Unarchive" : "Archive"
-                  }
-                  handleClick={() =>
-                    status === TaskStatusEnum.Archived
-                      ? handleUnarchive()
-                      : handleChangeStatus(TaskStatusEnum.Archived)
-                  }
+                  tooltip={isArchived ? "Unarchive" : "Archive"}
+                  handleClick={handleArchiveButton}
+                  disabled={isDisabled}
                 >
-                  {status === TaskStatusEnum.Archived ? (
+                  {isArchived ? (
                     <FontAwesomeIcon icon={faBoxesPacking} />
                   ) : (
                     <FontAwesomeIcon icon={faBoxArchive} />

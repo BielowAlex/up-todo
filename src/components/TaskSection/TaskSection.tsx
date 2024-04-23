@@ -42,13 +42,13 @@ const TaskSection: React.FC = React.memo(() => {
       <TaskListFilter />
       <ul className={style.list}>
         {isSuccess && !data.length ? (
-          <div className={style.messageBox}>
+          <li className={style.messageBox}>
             <h3 className={style.title}>
               You currently have no To-Do tasks. Feel free to add new tasks to
               get started!
               <FontAwesomeIcon icon={faFaceSmileWink} />
             </h3>
-          </div>
+          </li>
         ) : (
           data?.map((el) => (
             <TaskCard
