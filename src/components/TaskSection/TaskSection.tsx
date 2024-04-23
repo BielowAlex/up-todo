@@ -6,7 +6,7 @@ import { useGetUserTaskQuery } from "../../core/api/taskPrivateApi.ts";
 import { TaskStatusEnum } from "../../types";
 import { useAppSelector } from "../../hooks";
 import { formatDateToYYYYMMDD } from "../../utils";
-import { Modal } from "../UI/CustomComponents/Modal";
+import { Modal } from "../UI";
 import { CreateTaskForm } from "../CreateTaskForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceSmileWink } from "@fortawesome/free-solid-svg-icons";
