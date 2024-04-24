@@ -1,8 +1,11 @@
 import React from "react";
 import style from "./style.module.scss";
 import { Button } from "../../components";
+import { useAppSelector } from "../../hooks";
 
 const AboutUsPage: React.FC = () => {
+  const isLogin: boolean = useAppSelector((state) => state.authReducer.isLogin);
+
   return (
     <div className={style.container}>
       <h2>About-us</h2>
@@ -46,7 +49,7 @@ const AboutUsPage: React.FC = () => {
         daily affairs and achieve greater efficiency. Join us today and take
         control of your time like never before!
       </p>
-      <Button to="/auth" variant="default">
+      <Button to={isLogin ? "/" : "/auth"} variant="default">
         Lets start
       </Button>
     </div>

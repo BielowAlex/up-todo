@@ -9,9 +9,12 @@ import { useNavigate } from "react-router-dom";
 const Header: React.FC = () => {
   const navigate = useNavigate();
 
+  const isShow =
+    window.location.pathname !== "/" && window.location.pathname !== "/auth";
+
   return (
     <header className={style.container}>
-      {window.location.pathname !== "/" && (
+      {isShow && (
         <Button
           variant="none"
           handleClick={() => navigate(-1)}

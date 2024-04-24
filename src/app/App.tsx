@@ -20,14 +20,14 @@ const App: React.FC = () => {
     <Suspense fallback={<Loader />}>
       <ErrorBoundary FallbackComponent={ErrorPageAsync}>
         <Routes>
-          <Route path="/auth">
-            <Route index element={<AuthPageAsync />} />
-            <Route path="email">
-              <Route index element={<LoginEmailPageAsync />} />
-              <Route path="sign-up" element={<RegisterEmailPageAsync />} />
-            </Route>
-          </Route>
           <Route element={<MainLayout />}>
+            <Route path="/auth">
+              <Route index element={<AuthPageAsync />} />
+              <Route path="email">
+                <Route index element={<LoginEmailPageAsync />} />
+                <Route path="sign-up" element={<RegisterEmailPageAsync />} />
+              </Route>
+            </Route>
             <Route path="*" element={<NotFoundPageAsync />} />
             <Route path="/about-us" element={<AboutUsPageAsync />} />
             <Route element={<RequireAuth />}>
