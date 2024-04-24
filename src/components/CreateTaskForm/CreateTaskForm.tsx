@@ -9,7 +9,7 @@ import {
   transformErrorData,
 } from "../../utils";
 import { Form, Formik } from "formik";
-import { Button, FormInput } from "../UI";
+import { Button, FormInput, TextArea } from "../UI";
 import {
   useCreateTaskMutation,
   useGetUserTaskQuery,
@@ -72,7 +72,7 @@ const CreateTaskForm: React.FC = () => {
         <Form className={style.container}>
           {loginError && <div className={style.error}>{loginError}</div>}
           <FormInput type="text" name="title" label="Title" />
-          <FormInput type="text" name="description" label="Description" />
+          <TextArea name="description" label="Description" />
           <Button disabled={isSubmitting} type="submit">
             {isLoading ? "Loading..." : "Add"}
           </Button>

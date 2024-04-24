@@ -1,8 +1,10 @@
 .head{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
   width: 100%;
-  gap: 50px;
+  gap: 20px;
   &Content{
     transition: all linear .4s;
     font-weight: bold;
