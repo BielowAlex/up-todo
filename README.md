@@ -1,4 +1,11 @@
-![img.png](https://cdn4.iconfinder.com/data/icons/doodle-3/175/file-list-512.png)
+[//]: # (![img.png]&#40;https://i.ibb.co/McNCSFH/tornado-solid.png&#41;)
+<img src="https://i.ibb.co/McNCSFH/tornado-solid.png" alt="logo" width="150" align="center" /> 
+
+## Links
+
+* ### [ Backend github link](https://github.com/BielowAlex/up-todo-be)
+* ### [ Deployment link](https://up-todo.vercel.app/)
+
 # UpTodo
 UpTodo is a sleek, intuitive to-do list web application designed to help you manage your daily tasks with ease and
 efficiency. Built with the modern React framework and leveraging the power of Vite for blazing-fast development
@@ -29,14 +36,14 @@ experiences, UpTodo offers a seamless way to organize your day.
 ## Getting Started
 To get a local copy up and running follow these simple steps:
 1. Clone the repo: 
-```bash
-git clone https://github.com/BielowAlex/up-todo.git
-```
+    ```bash
+    git clone https://github.com/BielowAlex/up-todo.git
+    ```
 2. Install NPM package
-```bash
-npm i
-```
+    ```bash
+    npm i
+    ```
 3. Install NPM package
-```bash
-npm run dev
-```
+    ```bash
+    npm run dev
+    ``` 
